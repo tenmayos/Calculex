@@ -7,18 +7,27 @@ public partial class MainPage : ContentPage
 	public MainPage()
 	{
 		InitializeComponent();
-	}
+        btn.Focused += Btn_Focused;
+        btn.Unfocused += Btn_Unfocused;
+    }
 
-	private void OnCounterClicked(object sender, EventArgs e)
+    private void Btn_Unfocused(object sender, FocusEventArgs e)
+    {
+		btn.BackgroundColor = Colors.Blue;
+    }
+
+    private void Btn_Focused(object sender, FocusEventArgs e)
+    {
+		btn.BackgroundColor = Colors.Red;
+    }
+
+    private void OnMouseEnter(object sender, EventArgs e)
 	{
-		count++;
-
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
+        btn.BackgroundColor = Colors.Red;
 	}
+    private void OnMouseExit(object sender, EventArgs e)
+    {
+        btn.BackgroundColor = Colors.White;
+    }
 }
 
