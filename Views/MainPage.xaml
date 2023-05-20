@@ -10,7 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1.1*" />
             <RowDefinition Height="0.5*" />
-            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.75*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -51,6 +51,10 @@
                 TextColor="Black"
                 FontSize="15"
                 >
+            <Button.GestureRecognizers>
+                <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+            </Button.GestureRecognizers>
         </Button>
 
         <Button Text="List"
@@ -59,19 +63,115 @@
                 FontSize="20"
                 BackgroundColor="Orange"
                 TextColor="Black"
-                />
+                >
+            <Button.GestureRecognizers>
+                <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+            </Button.GestureRecognizers>
+        </Button>
         <Button Text="( )"
                 Grid.Row="1"
                 Grid.Column="2"
                 FontSize="30"
                 BackgroundColor="Gray"
-                TextColor="Black"/>
+                TextColor="Black">
+            <Button.GestureRecognizers>
+                <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+            </Button.GestureRecognizers>
+        </Button>
 
-        <Button Text="Hover"
-                x:Name="btn"
+        <Button Text="^"
                 Grid.Row="1"
                 Grid.Column="3"
                 FontSize="15"
+                BackgroundColor="Gray"
+                TextColor="Black"
+                >
+            <Button.GestureRecognizers>
+                <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+            </Button.GestureRecognizers>
+        </Button>
+        
+        <VerticalStackLayout Grid.Row="2"
+                             Grid.Column="0">
+            <Button Text="EQ 1"
+                    FontSize="15"
+                    BackgroundColor="Orange"
+                    TextColor="Black"
+                >
+                <Button.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+                </Button.GestureRecognizers>
+            </Button>
+            <Button Text="History 2"
+                    FontSize="15"
+                    BackgroundColor="Orange"
+                    TextColor="Black"
+                >
+                <Button.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+                </Button.GestureRecognizers>
+            </Button>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="2"
+                             Grid.Column="1">
+            <Button Text="EQ 2"
+                    FontSize="15"
+                    BackgroundColor="Orange"
+                    TextColor="Black"
+                >
+                <Button.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+                </Button.GestureRecognizers>
+            </Button>
+            <Button Text="History 2"
+                    FontSize="15"
+                    BackgroundColor="Orange"
+                    TextColor="Black"
+                >
+                <Button.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+                </Button.GestureRecognizers>
+            </Button>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="2"
+                             Grid.Column="2">
+            <Button Text="EQ 3"
+                    FontSize="15"
+                    BackgroundColor="Orange"
+                    TextColor="Black"
+                >
+                <Button.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+                </Button.GestureRecognizers>
+            </Button>
+            <Button Text="History 3"
+                    FontSize="15"
+                    BackgroundColor="Orange"
+                    TextColor="Black"
+                >
+                <Button.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+                </Button.GestureRecognizers>
+            </Button>
+        </VerticalStackLayout>
+
+        <Button Text="÷"
+                Grid.Row="2"
+                Grid.Column="3"
+                FontSize="36"
+                BackgroundColor="Gray"
+                TextColor="Black"
                 >
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
