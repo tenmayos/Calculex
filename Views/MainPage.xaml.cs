@@ -26,6 +26,7 @@ public partial class MainPage : ContentPage
     private void OnLabelClicked(object sender, EventArgs e)
     {
         // Figure out how to hook the entry here, Focus() was a bit buggy, investigate further.
+        entry.Focus();
     }
     #endregion
 }

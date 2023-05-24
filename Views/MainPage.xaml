@@ -29,6 +29,7 @@
                Grid.Row="7"
                x:Name="entry"
                BackgroundColor="Transparent"
+               TextChanged="OnTextChange"
                />
 
         <VerticalStackLayout
