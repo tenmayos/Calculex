@@ -9,7 +9,7 @@ public partial class MainPage : ContentPage
     #region Behavior Events
     private void OnMouseEnter(object sender, EventArgs e)
 	{
-        (sender as Button).Opacity = 0.8f;
+        (sender as Button).Opacity = 0.9f;
 	}
     private void OnMouseExit(object sender, EventArgs e)
     {
