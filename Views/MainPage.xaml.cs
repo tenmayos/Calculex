@@ -18,12 +18,16 @@ public partial class MainPage : ContentPage
 
     private void OnEntryFocused(object sender, EventArgs e)
     {
+#if WINDOWS
         input.TextColor = Colors.Green;
+#endif
     }
 
     private void OnEntryUnfocused(object sender, EventArgs e)
     {
+#if WINDOWS
         input.TextColor = Colors.White;
+#endif
     }
 
     private void OnTextChange(object sender, EventArgs e)
@@ -33,7 +37,9 @@ public partial class MainPage : ContentPage
 
     private void OnLabelSelected(object sender, EventArgs e)
     {
+#if WINDOWS
         entry.Focus();
+#endif
     }
     #endregion
 }
