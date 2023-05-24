@@ -20,7 +20,8 @@ public partial class MainPage : ContentPage
     }
     private void OnTextChange(object sender, EventArgs e)
     {
-        input.Text = entry.Text;
+        // Process the input text from here.
+        input.Text += entry.Text;
     }
 
     private void OnLabelClicked(object sender, EventArgs e)
