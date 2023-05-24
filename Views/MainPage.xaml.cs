@@ -6,7 +6,7 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
     }
-
+    #region Behavior Events
     private void OnMouseEnter(object sender, EventArgs e)
 	{
         (sender as Button).Opacity = 0.8f;
@@ -15,5 +15,26 @@ public partial class MainPage : ContentPage
     {
         (sender as Button).Opacity = 1;
     }
+
+    private void OnEntryFocused(object sender, EventArgs e)
+    {
+        input.TextColor = Colors.Green;
+    }
+
+    private void OnEntryUnfocused(object sender, EventArgs e)
+    {
+        input.TextColor = Colors.White;
+    }
+
+    private void OnTextChange(object sender, EventArgs e)
+    {
+        input.Text = entry.Text;
+    }
+
+    private void OnLabelSelected(object sender, EventArgs e)
+    {
+        entry.Focus();
+    }
+    #endregion
 }
 
