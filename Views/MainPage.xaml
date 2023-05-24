@@ -29,9 +29,6 @@
                Grid.Row="7"
                x:Name="entry"
                BackgroundColor="Transparent"
-               TextChanged="OnTextChange"
-               Focused="OnEntryFocused"
-               Unfocused="OnEntryUnfocused"
                />
 
         <VerticalStackLayout
@@ -56,7 +53,7 @@
             <VerticalStackLayout.GestureRecognizers>
                 <!-- Clicked Event doesn't fire -->
                 <!--<ClickGestureRecognizer Clicked="OnLabelHovered"/>-->
-                <TapGestureRecognizer Tapped="OnLabelSelected"/>
+                <TapGestureRecognizer Tapped="OnLabelClicked"/>
             </VerticalStackLayout.GestureRecognizers>
 
         </VerticalStackLayout>

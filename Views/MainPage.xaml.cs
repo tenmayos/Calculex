@@ -1,11 +1,14 @@
-﻿namespace Calculex.Views;
+﻿using System.Runtime.Serialization;
+
+namespace Calculex.Views;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage()
+    public MainPage()
 	{
 		InitializeComponent();
     }
+
     #region Behavior Events
     private void OnMouseEnter(object sender, EventArgs e)
 	{
@@ -15,31 +18,14 @@ public partial class MainPage : ContentPage
     {
         (sender as Button).Opacity = 1;
     }
-
-    private void OnEntryFocused(object sender, EventArgs e)
-    {
-#if WINDOWS
-        input.TextColor = Colors.Green;
-#endif
-    }
-
-    private void OnEntryUnfocused(object sender, EventArgs e)
-    {
-#if WINDOWS
-        input.TextColor = Colors.White;
-#endif
-    }
-
     private void OnTextChange(object sender, EventArgs e)
     {
         input.Text = entry.Text;
     }
 
-    private void OnLabelSelected(object sender, EventArgs e)
+    private void OnLabelClicked(object sender, EventArgs e)
     {
-#if WINDOWS
-        entry.Focus();
-#endif
+        // Figure out how to hook the entry here, Focus() was a bit buggy, investigate further.
     }
     #endregion
 }
