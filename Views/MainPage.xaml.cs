@@ -21,7 +21,17 @@ public partial class MainPage : ContentPage
     private void OnTextChange(object sender, EventArgs e)
     {
         // Process the input text from here.
-        input.Text += entry.Text;
+        bool entryHasValue = entry.Text.Length > 0;
+
+        if (entryHasValue)
+        {
+            input.Text = entry.Text;
+        }
+        else
+        {
+            input.Text = "0";
+        }
+        
     }
 
     private void OnLabelClicked(object sender, EventArgs e)
