@@ -4,13 +4,13 @@
              x:Class="Calculex.Views.MainPage">
 
     <Grid Padding="5"
-          ColumnSpacing="1"
-          RowSpacing="1">
+          ColumnSpacing="1.5"
+          RowSpacing="1.5">
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.1*" />
-            <RowDefinition Height="0.5*" />
-            <RowDefinition Height="0.75*" />
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -43,14 +43,13 @@
                    HorizontalTextAlignment="End"
                    />
 
-
             <Label
                 Text="0"
-                HorizontalTextAlignment="End"
                 FontSize="30"
+                HorizontalTextAlignment="End"
                 Opacity="0.8"
                 />
-            
+
             <VerticalStackLayout.GestureRecognizers>
                 <!-- Clicked Event doesn't fire -->
                 <!--<ClickGestureRecognizer Clicked="OnLabelHovered"/>-->
@@ -58,42 +57,47 @@
             </VerticalStackLayout.GestureRecognizers>
 
         </VerticalStackLayout>
-
+        
         <Button Grid.Row="1"
                 Grid.Column="0"
                 Text="Variable"
                 BackgroundColor="Orange"
                 TextColor="Black"
-                FontSize="15"
-                >
+                FontSize="15">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
-
+        
         <Button Text="List"
                 Grid.Row="1"
                 Grid.Column="1"
                 FontSize="20"
                 BackgroundColor="Orange"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
+        
         <Button Text="( )"
                 Grid.Row="1"
                 Grid.Column="2"
                 FontSize="30"
                 BackgroundColor="Gray"
                 TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="^"
@@ -101,97 +105,117 @@
                 Grid.Column="3"
                 FontSize="15"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
+            <Button.GestureRecognizers>
+                <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"
+                                          />
+            </Button.GestureRecognizers>
+            
+        </Button>
+        
+        <Grid Grid.Row="2" Grid.Column="0">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Text="EQ 1"
+                    FontSize="15"
+                    BackgroundColor="Orange"
+                    TextColor="Black">
+
+                <Button.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+                </Button.GestureRecognizers>
+                
+            </Button>
+            
+            <Button Text="History 1"
+                    FontSize="15"
+                    BackgroundColor="Orange"
+                    TextColor="Black"
+                    Grid.Row="1">
+                
+                <Button.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                              PointerExited="OnMouseExit"/>
+                </Button.GestureRecognizers>
+                
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="2"
+              Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Text="EQ 2"
+                    FontSize="15"
+                    BackgroundColor="Orange"
+                    TextColor="Black">
+                
+                <Button.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+                </Button.GestureRecognizers>
+                
+            </Button>
+            
+            <Button Text="History 2"
+                    FontSize="15"
+                    BackgroundColor="Orange"
+                    TextColor="Black"
+                    Grid.Row="1">
+                
+                <Button.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+                </Button.GestureRecognizers>
+                
+            </Button>
+        </Grid>
+
+        <Button Text="C"
+                Grid.Row="2"
+                Grid.Column="2"
+                FontSize="36"
+                BackgroundColor="#AB3825"
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
         
-        <VerticalStackLayout Grid.Row="2"
-                             Grid.Column="0">
-            <Button Text="EQ 1"
-                    FontSize="15"
-                    BackgroundColor="Orange"
-                    TextColor="Black"
-                >
-                <Button.GestureRecognizers>
-                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
-                                          PointerExited="OnMouseExit"/>
-                </Button.GestureRecognizers>
-            </Button>
-            <Button Text="History 2"
-                    FontSize="15"
-                    BackgroundColor="Orange"
-                    TextColor="Black"
-                >
-                <Button.GestureRecognizers>
-                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
-                                          PointerExited="OnMouseExit"/>
-                </Button.GestureRecognizers>
-            </Button>
-        </VerticalStackLayout>
-
-        <VerticalStackLayout Grid.Row="2"
-                             Grid.Column="1">
-            <Button Text="EQ 2"
-                    FontSize="15"
-                    BackgroundColor="Orange"
-                    TextColor="Black"
-                >
-                <Button.GestureRecognizers>
-                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
-                                          PointerExited="OnMouseExit"/>
-                </Button.GestureRecognizers>
-            </Button>
-            <Button Text="History 2"
-                    FontSize="15"
-                    BackgroundColor="Orange"
-                    TextColor="Black"
-                >
-                <Button.GestureRecognizers>
-                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
-                                          PointerExited="OnMouseExit"/>
-                </Button.GestureRecognizers>
-            </Button>
-        </VerticalStackLayout>
-
-        <VerticalStackLayout Grid.Row="2"
-                             Grid.Column="2">
-            <Button Text="EQ 3"
-                    FontSize="15"
-                    BackgroundColor="Orange"
-                    TextColor="Black"
-                >
-                <Button.GestureRecognizers>
-                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
-                                          PointerExited="OnMouseExit"/>
-                </Button.GestureRecognizers>
-            </Button>
-            <Button Text="History 3"
-                    FontSize="15"
-                    BackgroundColor="Orange"
-                    TextColor="Black"
-                >
-                <Button.GestureRecognizers>
-                    <PointerGestureRecognizer PointerEntered="OnMouseEnter"
-                                          PointerExited="OnMouseExit"/>
-                </Button.GestureRecognizers>
-            </Button>
-        </VerticalStackLayout>
-
         <Button Text="÷"
                 Grid.Row="2"
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="7"
@@ -199,12 +223,13 @@
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="8"
@@ -212,12 +237,13 @@
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                >
+                TextColor="Black">
+
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="9"
@@ -225,12 +251,13 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="*"
@@ -238,12 +265,13 @@
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="4"
@@ -251,12 +279,13 @@
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="5"
@@ -264,12 +293,13 @@
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="6"
@@ -277,12 +307,13 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="-"
@@ -290,12 +321,13 @@
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="1"
@@ -303,12 +335,13 @@
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="2"
@@ -316,12 +349,13 @@
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="3"
@@ -329,12 +363,13 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="+"
@@ -342,12 +377,13 @@
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="0"
@@ -355,12 +391,13 @@
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="."
@@ -368,12 +405,13 @@
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="←"
@@ -381,12 +419,13 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
 
         <Button Text="↷"
@@ -394,12 +433,13 @@
                 Grid.Column="3"
                 FontSize="40"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                >
+                TextColor="Black">
+            
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
             </Button.GestureRecognizers>
+            
         </Button>
     </Grid>
 
