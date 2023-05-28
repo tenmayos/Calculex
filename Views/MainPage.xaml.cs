@@ -62,8 +62,10 @@ public partial class MainPage : ContentPage
         else
         {
             input.Text = btn.Text;
-            entry.Text += btn.Text;
+            entry.Text = btn.Text;
         }
+
+        entry.Focus();
     }
 
     private void OnResetClicked(object sender, EventArgs e)
