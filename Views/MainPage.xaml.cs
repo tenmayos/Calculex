@@ -29,15 +29,49 @@ public partial class MainPage : ContentPage
     {
         // Process the input text from here.
         bool entryHasValue = entry.Text.Length > 0;
-
+        
         if (entryHasValue)
         {
-            input.Text = entry.Text;
+            // Since the entry has value, then the first character isn't null
+            if (entry.Text[0] == '0')
+            {
+                entry.Text = "";
+            }
+            else
+            {
+                input.Text = entry.Text;
+            }
         }
         else
-        {
+        {   
             input.Text = "0";
+            entry.Text = "";
         }
+    }
+
+    private void OnNumberButtonClicked(object sender, EventArgs e)
+    {
+        bool entryHasValue = entry.Text.Length > 0;
+        var btn = (sender as Button);
+
+        if (entryHasValue && entry.Text != "0")
+        {
+            input.Text += btn.Text;
+            entry.Text += btn.Text;
+        } 
+        else
+        {
+            input.Text = btn.Text;
+            entry.Text += btn.Text;
+        }
+    }
+
+    private void OnResetClicked(object sender, EventArgs e)
+    {
+        entry.Text = "";
+        input.Text = "0";
+        rslt.Text = "0";
+        entry.Focus();
     }
 }
 
