@@ -1,10 +1,14 @@
-﻿namespace Calculex.Views;
+﻿using Calculex.Core;
+
+namespace Calculex.Views;
 
 public partial class MainPage : ContentPage
 {
+    private MathProcessor mp;
     public MainPage()
 	{
 		InitializeComponent();
+        mp = new MathProcessor();
     }
 
     #region Behavior Events
@@ -32,6 +36,14 @@ public partial class MainPage : ContentPage
         
         if (entryHasValue)
         {
+            var lastChar = entry.Text[entry.Text.Length - 1];
+            if (!mp.CharacterIsAllowed(lastChar.ToString()))
+            {
+                entry.Text = entry.Text.Remove(entry.Text.Length - 1);
+                return;
+            }
+                
+
             // Since the entry has value, then the first character isn't null
             if (entry.Text[0] == '0')
             {
