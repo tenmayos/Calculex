@@ -26,6 +26,7 @@
         </Grid.ColumnDefinitions>
 
         <Entry TextColor="Transparent"
+               Text=""
                Grid.Row="7"
                x:Name="entry"
                BackgroundColor="Transparent"
@@ -45,6 +46,7 @@
 
             <Label
                 Text="0"
+                x:Name="rslt"
                 FontSize="30"
                 HorizontalTextAlignment="End"
                 Opacity="0.8"
@@ -63,7 +65,8 @@
                 Text="Variable"
                 BackgroundColor="Orange"
                 TextColor="Black"
-                FontSize="15">
+                FontSize="15"
+                Clicked="OnNumberButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -195,7 +198,8 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="#AB3825"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnResetClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -223,7 +227,8 @@
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnNumberButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -237,7 +242,8 @@
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnNumberButtonClicked">
 
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -251,7 +257,8 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnNumberButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -279,7 +286,8 @@
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnNumberButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -293,7 +301,8 @@
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnNumberButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -307,7 +316,8 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnNumberButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -335,7 +345,8 @@
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnNumberButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -349,7 +360,8 @@
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnNumberButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -363,7 +375,8 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnNumberButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -391,7 +404,8 @@
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnNumberButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
