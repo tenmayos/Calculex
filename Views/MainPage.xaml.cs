@@ -42,7 +42,6 @@ public partial class MainPage : ContentPage
                 entry.Text = entry.Text.Remove(entry.Text.Length - 1);
                 return;
             }
-                
             // Since the entry has value, then the first character isn't null
             if (entry.Text[0] == '0')
             {
