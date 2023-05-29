@@ -34,5 +34,10 @@ namespace Calculex.Core
 
             return isAllowed;
         }
+
+        public bool IsMathOperator(string ch)
+        {
+            return AllowedOperators.Contains(ch);
+        }
     }
 }
