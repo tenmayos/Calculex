@@ -30,10 +30,10 @@ public partial class MainPage : ContentPage
 
     private void OnNumberButtonClicked(object sender, EventArgs e)
     {
-        bool entryHasValue = input.Text.Length > 0;
+        bool inputHasValue = input.Text.Length > 0;
         var btn = (sender as Button);
 
-        if (entryHasValue && input.Text != "0")
+        if (inputHasValue && input.Text != "0")
         {
             input.Text += btn.Text;
         }
