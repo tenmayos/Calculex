@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 
 namespace Calculex.Core
 {
@@ -10,6 +6,7 @@ namespace Calculex.Core
     {
         public string[] AllowedNumbers { get; private set; }
         public string[] AllowedOperators { get; private set; }
+        public DataTable DataTable { get; set; }
 
         public MathProcessor()
         {
@@ -19,6 +16,7 @@ namespace Calculex.Core
                 AllowedNumbers[i] = i.ToString();
             }
             AllowedOperators = new string[5] { "+", "-", "/", "*", "^" };
+            DataTable = new DataTable();
         }
         public bool CharacterIsAllowed(string ch)
         {
@@ -38,6 +36,19 @@ namespace Calculex.Core
         public bool IsMathOperator(string ch)
         {
             return AllowedOperators.Contains(ch);
+        }
+
+        public string Compute(string equation)
+        {
+            try
+            {
+                return DataTable.Compute(equation, null).ToString();
+            }
+            catch (Exception)
+            {
+                return "0";
+            }
+            
         }
     }
 }

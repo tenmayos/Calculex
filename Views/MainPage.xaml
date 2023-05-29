@@ -25,14 +25,6 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Entry TextColor="Transparent"
-               Text=""
-               Grid.Row="7"
-               x:Name="entry"
-               BackgroundColor="Transparent"
-               TextChanged="OnTextChange"
-               />
-
         <VerticalStackLayout
                      Grid.Row="0"
                      Grid.ColumnSpan="4"
@@ -52,12 +44,6 @@
                 Opacity="0.8"
                 />
 
-            <VerticalStackLayout.GestureRecognizers>
-                <!-- Clicked Event doesn't fire -->
-                <!--<ClickGestureRecognizer Clicked="OnLabelHovered"/>-->
-                <TapGestureRecognizer Tapped="OnLabelClicked"/>
-            </VerticalStackLayout.GestureRecognizers>
-
         </VerticalStackLayout>
         
         <Button Grid.Row="1"
@@ -65,8 +51,7 @@
                 Text="Variable"
                 BackgroundColor="Orange"
                 TextColor="Black"
-                FontSize="15"
-                Clicked="OnNumberButtonClicked">
+                FontSize="15">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
