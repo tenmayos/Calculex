@@ -104,11 +104,13 @@
         </Button>
 
         <Button Text="^"
+                ClassId="^"
                 Grid.Row="1"
                 Grid.Column="3"
                 FontSize="15"
                 BackgroundColor="Gray"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnOperatorButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -209,11 +211,13 @@
         </Button>
         
         <Button Text="÷"
+                ClassId="/"
                 Grid.Row="2"
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnOperatorButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -268,11 +272,13 @@
         </Button>
 
         <Button Text="*"
+                ClassId="*"
                 Grid.Row="3"
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnOperatorButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -327,11 +333,13 @@
         </Button>
 
         <Button Text="-"
+                ClassId="-"
                 Grid.Row="4"
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnOperatorButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
@@ -386,11 +394,13 @@
         </Button>
 
         <Button Text="+"
+                ClassId="+"
                 Grid.Row="5"
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnOperatorButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"

@@ -77,7 +77,10 @@ public partial class MainPage : ContentPage
 
         entry.Focus();
     }
-
+    private void OnOperatorButtonClicked(object sender, EventArgs e)
+    {
+        
+    }
     private void OnResetClicked(object sender, EventArgs e)
     {
         entry.Text = "";
