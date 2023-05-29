@@ -44,8 +44,10 @@ public partial class MainPage : ContentPage
     }
     private void OnOperatorButtonClicked(object sender, EventArgs e)
     {
-        var lastCharacter = input.Text[input.Text.Length - 1];
-        if (!mp.IsMathOperator(lastCharacter.ToString()))
+        // Checks if the last character is an operator or not.
+
+        string lastCharacter = input.Text[input.Text.Length - 1].ToString();
+        if (!mp.IsMathOperator(lastCharacter))
         {
             input.Text += (sender as Button).ClassId;
         }
@@ -54,6 +56,17 @@ public partial class MainPage : ContentPage
     {
         input.Text = "0";
         rslt.Text = "0";
+    }
+
+    private void OnDeleteButtonClicked(object sender, EventArgs e)
+    {
+        if(input.Text.Length <= 1)
+        {
+            input.Text = "0";
+            return;
+        }
+
+        input.Text = input.Text.Remove(input.Text.Length - 1);
     }
 }
 

@@ -428,7 +428,8 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnDeleteButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
