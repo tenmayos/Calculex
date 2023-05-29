@@ -74,12 +74,23 @@ public partial class MainPage : ContentPage
             input.Text = btn.Text;
             entry.Text = btn.Text;
         }
-
         entry.Focus();
     }
     private void OnOperatorButtonClicked(object sender, EventArgs e)
     {
-        
+        bool entryHasValue = entry.Text.Length > 0;
+
+        if (entryHasValue)
+        {
+            char lastChar = entry.Text[entry.Text.Length - 1];
+
+            if (!mp.IsMathOperator(lastChar.ToString()))
+            {
+                string btnText = (sender as Button).ClassId;
+                input.Text += btnText;
+                entry.Text += btnText;
+            }
+        }
     }
     private void OnResetClicked(object sender, EventArgs e)
     {
