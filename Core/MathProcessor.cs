@@ -88,7 +88,10 @@ namespace Calculex.Core
                 return 0;
             }
 
-            Dictionary<string, double> eqMap = new Dictionary<string, double>();
+            // what happens when i write code without thinking 2 seconds into the future, then attempt to fix it with my feet.
+
+            Dictionary<int, KeyValuePair<string, double>> eqMap = new Dictionary<int, KeyValuePair<string, double>>();
+            
             string currentKey;
             string collectedNums = "";
 
@@ -97,7 +100,7 @@ namespace Calculex.Core
                 if (IsMathOperator(choppedInput[i]))
                 {
                     currentKey = choppedInput[i];
-                    eqMap.Add(currentKey, double.Parse(collectedNums));
+                    eqMap.Add(i, new KeyValuePair<string, double>(currentKey, double.Parse(collectedNums)));
                     collectedNums = "";
                     continue;
                 }
@@ -105,7 +108,10 @@ namespace Calculex.Core
                 collectedNums += choppedInput[i];
             }
 
-            eqMap.Add("NA", double.Parse(collectedNums == ""? "0": collectedNums));
+            // using choppedInput.Count because it is never reached in the forloop therefore always going to be unique,
+            // i hope.
+            var leftOver = new KeyValuePair<string, double>("NA", double.Parse(collectedNums == "" ? "0" : collectedNums));
+            eqMap.Add(choppedInput.Count, leftOver);
 
             // TODO: process the dictionary provided u know that key is operator string and value is the left-handside
             // and the next value is the right-handside -- Example:
@@ -128,16 +134,17 @@ namespace Calculex.Core
             return CalculateDict(eqMap);
         }
 
-        public double CalculateDict(Dictionary<string, double> mappedEquation)
+        public double CalculateDict(Dictionary<int, KeyValuePair<string, double>> mappedEquation)
         {
             int p = 0;
-            var pair = mappedEquation.ElementAt(p);
+            var pair = mappedEquation.ElementAt(p).Value;
             var mathOp = pair.Key;
             double result = pair.Value;
+
             do
             {
                 p++;
-                var pair2 = mappedEquation.ElementAt(p);
+                var pair2 = mappedEquation.ElementAt(p).Value;
                 var num2 = pair2.Value;
                 result = ExecuteComputation(mathOp, result, num2);
                 mathOp = pair2.Key;
@@ -158,6 +165,8 @@ namespace Calculex.Core
                     return num1 / num2;
                 case "*":
                     return num1 * num2;
+                case "^":
+                    return Math.Pow(num1, num2);
 
                 default:
                     return 0;
