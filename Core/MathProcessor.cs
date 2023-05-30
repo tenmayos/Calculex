@@ -67,22 +67,8 @@ namespace Calculex.Core
             return result;
         }
 
-        public string Compute(string equation)
-        {
-            try
-            {
-                return DataTable.Compute(equation, null).ToString();
-            }
-            catch (Exception)
-            {
-                return "0";
-            }
-            
-        }
-
         public double ProcessResult(List<string> choppedInput)
         {
-            var lastDigit = choppedInput[choppedInput.Count - 1];
 
             if (!ContainsMathOperator(choppedInput))
             {
