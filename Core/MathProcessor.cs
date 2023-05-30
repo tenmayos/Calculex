@@ -69,7 +69,6 @@ namespace Calculex.Core
 
         public double ProcessResult(List<string> choppedInput)
         {
-
             if (!ContainsMathOperator(choppedInput))
             {
                 string result = "";
@@ -80,6 +79,13 @@ namespace Calculex.Core
                 }
                 
                 return double.Parse(result);
+            }
+
+            string lastChar = choppedInput[choppedInput.Count - 1];
+
+            if (IsMathOperator(lastChar))
+            {
+                return 0;
             }
 
             Dictionary<string, double> eqMap = new Dictionary<string, double>();
@@ -119,8 +125,43 @@ namespace Calculex.Core
                NA:1
              */
 
-            return 0;
+            return CalculateDict(eqMap);
+        }
 
+        public double CalculateDict(Dictionary<string, double> mappedEquation)
+        {
+            int p = 0;
+            var pair = mappedEquation.ElementAt(p);
+            var mathOp = pair.Key;
+            double result = pair.Value;
+            do
+            {
+                p++;
+                var pair2 = mappedEquation.ElementAt(p);
+                var num2 = pair2.Value;
+                result = ExecuteComputation(mathOp, result, num2);
+                mathOp = pair2.Key;
+            } while (p < mappedEquation.Count - 1);
+
+            return result;
+        }
+
+        private double ExecuteComputation(string op, double num1, double num2)
+        {
+            switch (op)
+            {
+                case "+":
+                    return num1 + num2;
+                case "-":
+                    return num1 - num2;
+                case "/":
+                    return num1 / num2;
+                case "*":
+                    return num1 * num2;
+
+                default:
+                    return 0;
+            }
         }
     }
 }
