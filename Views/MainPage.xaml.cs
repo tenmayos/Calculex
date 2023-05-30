@@ -6,11 +6,13 @@ public partial class MainPage : ContentPage
 {
     private MathProcessor mp;
     private List<string> Container;
+    private bool operatorPressed;
     public MainPage()
 	{
 		InitializeComponent();
         mp = new MathProcessor();
         Container = new List<string>();
+        operatorPressed = false;
     }
 
     #region Behavior Events
@@ -38,13 +40,21 @@ public partial class MainPage : ContentPage
         if (inputHasValue && input.Text != "0")
         {
             input.Text += btn.Text;
-            Container.Add(btn.Text);
         }
         else
         {
             input.Text = btn.Text;
-            Container.Add(btn.Text);
         }
+
+        Container.Add(btn.Text);
+
+        if (!operatorPressed)
+        {
+            rslt.Text = input.Text;
+            return;
+        }
+
+        rslt.Text = mp.ProcessResult(Container).ToString();
     }
     private void OnOperatorButtonClicked(object sender, EventArgs e)
     {
@@ -54,6 +64,7 @@ public partial class MainPage : ContentPage
         if (!mp.IsMathOperator(lastCharacter))
         {
             string op = (sender as Button).ClassId;
+            operatorPressed = true;
             input.Text += op;
             Container.Add(op);
         }
@@ -63,6 +74,7 @@ public partial class MainPage : ContentPage
         input.Text = "0";
         rslt.Text = "0";
         Container = new List<string>();
+        operatorPressed = false;
     }
 
     private void OnDeleteButtonClicked(object sender, EventArgs e)
@@ -70,11 +82,14 @@ public partial class MainPage : ContentPage
         if (input.Text.Length <= 1)
         {
             input.Text = "0";
+            rslt.Text = "0";
+            Container = new List<string>();
             return;
         }
 
         input.Text = input.Text.Remove(input.Text.Length - 1);
         Container.RemoveAt(Container.Count - 1);
+        rslt.Text = mp.ProcessResult(Container).ToString();
     }
 }
 
