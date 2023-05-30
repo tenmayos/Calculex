@@ -88,10 +88,17 @@ namespace Calculex.Core
                 return 0;
             }
 
+            var eqMap = MapEquation(choppedInput);
+
+            return CalculateDict(eqMap);
+        }
+
+        private Dictionary<int, KeyValuePair<string, double>> MapEquation(List<string> choppedInput)
+        {
             // what happens when i write code without thinking 2 seconds into the future, then attempt to fix it with my feet.
 
             Dictionary<int, KeyValuePair<string, double>> eqMap = new Dictionary<int, KeyValuePair<string, double>>();
-            
+
             string currentKey;
             string collectedNums = "";
 
@@ -113,28 +120,10 @@ namespace Calculex.Core
             var leftOver = new KeyValuePair<string, double>("NA", double.Parse(collectedNums == "" ? "0" : collectedNums));
             eqMap.Add(choppedInput.Count, leftOver);
 
-            // TODO: process the dictionary provided u know that key is operator string and value is the left-handside
-            // and the next value is the right-handside -- Example:
-            /*
-              12+34
-               dic
-               +:12
-               NA:34
-
-               =12+34
-
-               22+38-1
-
-               dic
-               +:22
-               -:38
-               NA:1
-             */
-
-            return CalculateDict(eqMap);
+            return eqMap;
         }
 
-        public double CalculateDict(Dictionary<int, KeyValuePair<string, double>> mappedEquation)
+        private double CalculateDict(Dictionary<int, KeyValuePair<string, double>> mappedEquation)
         {
             int p = 0;
             var pair = mappedEquation.ElementAt(p).Value;
