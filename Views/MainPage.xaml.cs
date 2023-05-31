@@ -77,6 +77,11 @@ public partial class MainPage : ContentPage
         operatorPressed = false;
     }
 
+    private void OnParenthesisButtonClicked(object sender, EventArgs e)
+    {
+
+    }
+
     private void OnDeleteButtonClicked(object sender, EventArgs e)
     {
         if (input.Text.Length <= 1)
