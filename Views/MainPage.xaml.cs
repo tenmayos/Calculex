@@ -7,6 +7,7 @@ public partial class MainPage : ContentPage
     private MathProcessor Mp;
     private List<string> Container;
     private bool OperatorPressed;
+    private bool IsBetweenParentheses;
     public MainPage()
 	{
 		InitializeComponent();
@@ -14,6 +15,7 @@ public partial class MainPage : ContentPage
         Mp = new MathProcessor();
         Container = new List<string>();
         OperatorPressed = false;
+        IsBetweenParentheses = false;
     }
 
     #region Behavior Events
@@ -48,6 +50,11 @@ public partial class MainPage : ContentPage
         }
 
         Container.Add(btn.Text);
+        
+        if (IsBetweenParentheses)
+        {
+            return;
+        }
 
         if (!OperatorPressed)
         {
@@ -55,7 +62,7 @@ public partial class MainPage : ContentPage
             return;
         }
 
-        rslt.Text = Mp.ProcessResult(Container).ToString();
+        rslt.Text = Mp.Compute(input.Text).ToString();
     }
     private void OnOperatorButtonClicked(object sender, EventArgs e)
     {
@@ -76,11 +83,32 @@ public partial class MainPage : ContentPage
         rslt.Text = "0";
         Container = new List<string>();
         OperatorPressed = false;
+        IsBetweenParentheses = false;
     }
 
     private void OnParenthesisButtonClicked(object sender, EventArgs e)
     {
+        if (!IsBetweenParentheses && input.Text == "0")
+        {
+            IsBetweenParentheses = true;
+            input.Text = "(";
+            return;
+        }
 
+        if (!IsBetweenParentheses)
+        {
+            IsBetweenParentheses = true;
+            input.Text += "(";
+            return;
+        }
+
+        if (IsBetweenParentheses)
+        {
+            IsBetweenParentheses = false;
+            input.Text += ")";
+            rslt.Text = Mp.Compute(input.Text).ToString();
+            return;
+        }
     }
 
     private void OnDeleteButtonClicked(object sender, EventArgs e)
@@ -90,12 +118,13 @@ public partial class MainPage : ContentPage
             input.Text = "0";
             rslt.Text = "0";
             Container = new List<string>();
+            IsBetweenParentheses = false;
             return;
         }
 
         input.Text = input.Text.Remove(input.Text.Length - 1);
         Container.RemoveAt(Container.Count - 1);
-        rslt.Text = Mp.ProcessResult(Container).ToString();
+        rslt.Text = Mp.Compute(input.Text).ToString();
     }
 }
 
