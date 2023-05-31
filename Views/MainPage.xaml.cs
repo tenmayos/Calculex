@@ -4,15 +4,16 @@ namespace Calculex.Views;
 
 public partial class MainPage : ContentPage
 {
-    private MathProcessor mp;
+    private MathProcessor Mp;
     private List<string> Container;
-    private bool operatorPressed;
+    private bool OperatorPressed;
     public MainPage()
 	{
 		InitializeComponent();
-        mp = new MathProcessor();
+
+        Mp = new MathProcessor();
         Container = new List<string>();
-        operatorPressed = false;
+        OperatorPressed = false;
     }
 
     #region Behavior Events
@@ -48,23 +49,23 @@ public partial class MainPage : ContentPage
 
         Container.Add(btn.Text);
 
-        if (!operatorPressed)
+        if (!OperatorPressed)
         {
             rslt.Text = input.Text;
             return;
         }
 
-        rslt.Text = mp.ProcessResult(Container).ToString();
+        rslt.Text = Mp.ProcessResult(Container).ToString();
     }
     private void OnOperatorButtonClicked(object sender, EventArgs e)
     {
         // Checks if the last character is an operator or not.
 
         string lastCharacter = input.Text[input.Text.Length - 1].ToString();
-        if (!mp.IsMathOperator(lastCharacter))
+        if (!Mp.IsMathOperator(lastCharacter))
         {
             string op = (sender as Button).ClassId;
-            operatorPressed = true;
+            OperatorPressed = true;
             input.Text += op;
             Container.Add(op);
         }
@@ -74,7 +75,7 @@ public partial class MainPage : ContentPage
         input.Text = "0";
         rslt.Text = "0";
         Container = new List<string>();
-        operatorPressed = false;
+        OperatorPressed = false;
     }
 
     private void OnParenthesisButtonClicked(object sender, EventArgs e)
@@ -94,7 +95,7 @@ public partial class MainPage : ContentPage
 
         input.Text = input.Text.Remove(input.Text.Length - 1);
         Container.RemoveAt(Container.Count - 1);
-        rslt.Text = mp.ProcessResult(Container).ToString();
+        rslt.Text = Mp.ProcessResult(Container).ToString();
     }
 }
 
