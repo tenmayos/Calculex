@@ -5,7 +5,6 @@ namespace Calculex.Views;
 public partial class MainPage : ContentPage
 {
     private MathProcessor Mp;
-    private List<string> Container;
     private bool OperatorPressed;
     private bool IsBetweenParentheses;
     public MainPage()
@@ -13,7 +12,6 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 
         Mp = new MathProcessor();
-        Container = new List<string>();
         OperatorPressed = false;
         IsBetweenParentheses = false;
     }
@@ -48,8 +46,6 @@ public partial class MainPage : ContentPage
         {
             input.Text = btn.Text;
         }
-
-        Container.Add(btn.Text);
         
         if (IsBetweenParentheses)
         {
@@ -68,20 +64,18 @@ public partial class MainPage : ContentPage
     {
         // Checks if the last character is an operator or not.
 
-        string lastCharacter = input.Text[input.Text.Length - 1].ToString();
-        if (!Mp.IsMathOperator(lastCharacter))
+        char lastCharacter = input.Text[input.Text.Length - 1];
+        if (!Mp.IsMathOperator(lastCharacter) && lastCharacter != '(')
         {
             string op = (sender as Button).ClassId;
             OperatorPressed = true;
             input.Text += op;
-            Container.Add(op);
         }
     }
     private void OnResetClicked(object sender, EventArgs e)
     {
         input.Text = "0";
         rslt.Text = "0";
-        Container = new List<string>();
         OperatorPressed = false;
         IsBetweenParentheses = false;
     }
@@ -95,14 +89,16 @@ public partial class MainPage : ContentPage
             return;
         }
 
-        if (!IsBetweenParentheses)
+        char lastChar = input.Text[input.Text.Length - 1];
+
+        if (!IsBetweenParentheses && Mp.IsMathOperator(lastChar))
         {
             IsBetweenParentheses = true;
             input.Text += "(";
             return;
         }
 
-        if (IsBetweenParentheses)
+        if (IsBetweenParentheses && lastChar != '(')
         {
             IsBetweenParentheses = false;
             input.Text += ")";
@@ -115,16 +111,25 @@ public partial class MainPage : ContentPage
     {
         if (input.Text.Length <= 1)
         {
-            input.Text = "0";
-            rslt.Text = "0";
-            Container = new List<string>();
-            IsBetweenParentheses = false;
+            OnResetClicked(sender, e);
             return;
         }
 
-        input.Text = input.Text.Remove(input.Text.Length - 1);
-        Container.RemoveAt(Container.Count - 1);
-        rslt.Text = Mp.Compute(input.Text).ToString();
+        int index = input.Text.Length - 1;
+
+        char lastCharacter = input.Text[index];
+
+        input.Text = input.Text.Remove(index);
+
+        if (lastCharacter == ')')
+        {
+            IsBetweenParentheses = true;
+            return;
+        }
+        if (!IsBetweenParentheses)
+        {
+            rslt.Text = Mp.Compute(input.Text).ToString();
+        }
     }
 }
 

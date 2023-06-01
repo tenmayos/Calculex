@@ -1,27 +1,29 @@
-﻿using System.Data;
-using NCalc;
+﻿using org.matheval;
 
 namespace Calculex.Core
 {
-
-    // Will redo the entire way calculations r done.
     internal class MathProcessor
     {
-        public string[] AllowedOperators { get; private set; }
+        public char[] AllowedOperators { get; private set; }
 
         public MathProcessor()
         {
-            AllowedOperators = new string[5] { "+", "-", "/", "*", "^" };
+            AllowedOperators = new char[5] { '+', '=', '/', '*', '^' };
         }
 
-        public dynamic Compute(string equation)
+        public object Compute(string equation)
         {
+            char lastChar = equation[equation.Length - 1];
+
+            if (equation == "0" || equation == "(" || IsMathOperator(lastChar))
+                return 0;
+
             Expression e = new Expression(equation);
-            dynamic result = (dynamic)(e.Evaluate());
+            object result = e.Eval();
             return result;
         }
 
-        public bool IsMathOperator(string ch)
+        public bool IsMathOperator(char ch)
         {
             return AllowedOperators.Contains(ch);
         }
