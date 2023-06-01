@@ -18,8 +18,19 @@ namespace Calculex.Core
             if (equation == "0" || equation == "(" || IsMathOperator(lastChar))
                 return 0;
 
+            object result;
+
             Expression e = new Expression(equation);
-            object result = e.Eval();
+
+            try
+            {
+                result = e.Eval();
+            }
+            catch (Exception)
+            {
+                result = "ERR";
+            }
+            
             return result;
         }
 
