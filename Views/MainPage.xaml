@@ -129,7 +129,7 @@
                 
             </Button>
             
-            <Button Text="History 1"
+            <Button Text="EQ History 1"
                     FontSize="15"
                     BackgroundColor="Orange"
                     TextColor="Black"
@@ -167,7 +167,7 @@
                 
             </Button>
             
-            <Button Text="History 2"
+            <Button Text="EQ History 2"
                     FontSize="15"
                     BackgroundColor="Orange"
                     TextColor="Black"
