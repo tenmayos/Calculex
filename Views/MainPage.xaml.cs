@@ -26,11 +26,6 @@ public partial class MainPage : ContentPage
     {
         (sender as Button).Opacity = 1;
     }
-
-    private void OnLabelClicked(object sender, EventArgs e)
-    {
-
-    }
     #endregion
 
     private void OnNumberButtonClicked(object sender, EventArgs e)
@@ -105,6 +100,16 @@ public partial class MainPage : ContentPage
             rslt.Text = Mp.Compute(input.Text).ToString();
             return;
         }
+    }
+
+    private void OnHistory1Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void OnHistory2Clicked(object sender, EventArgs e)
+    {
+
     }
 
     private void OnDeleteButtonClicked(object sender, EventArgs e)
