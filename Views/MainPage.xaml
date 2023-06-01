@@ -415,7 +415,8 @@
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black">
+                TextColor="Black"
+                Clicked="OnOperatorButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
