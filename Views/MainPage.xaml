@@ -411,6 +411,7 @@
         </Button>
 
         <Button Text="."
+                ClassId="."
                 Grid.Row="6"
                 Grid.Column="1"
                 FontSize="36"
