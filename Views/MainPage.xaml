@@ -51,7 +51,8 @@
                 Text="Variable"
                 BackgroundColor="Orange"
                 TextColor="Black"
-                FontSize="15">
+                FontSize="15"
+                Clicked="OnVariableButtonClicked">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
