@@ -31,10 +31,13 @@ public partial class MainPage : ContentPage
     private void OnNumberButtonClicked(object sender, EventArgs e)
     {
         bool inputHasValue = input.Text.Length > 0;
+        char lastCharacter = input.Text[input.Text.Length - 1];
         var btn = (sender as Button);
-
+        
         if (inputHasValue && input.Text != "0")
         {
+            if (lastCharacter == 'X') return;
+
             input.Text += btn.Text;
         }
         else
@@ -114,13 +117,15 @@ public partial class MainPage : ContentPage
 
     private void OnDeleteButtonClicked(object sender, EventArgs e)
     {
-        if (input.Text.Length <= 1)
+        int currentLength = input.Text.Length;
+
+        if (currentLength <= 1)
         {
             OnResetClicked(sender, e);
             return;
         }
 
-        int index = input.Text.Length - 1;
+        int index = currentLength - 1;
 
         char lastCharacter = input.Text[index];
 
@@ -131,9 +136,46 @@ public partial class MainPage : ContentPage
             IsBetweenParentheses = true;
             return;
         }
+
+        if (lastCharacter == '(')
+        {
+            IsBetweenParentheses = false;
+        }
+
         if (!IsBetweenParentheses)
         {
             rslt.Text = Mp.Compute(input.Text).ToString();
+        }
+    }
+
+    private void OnVariableButtonClicked(object sender, EventArgs e)
+    {
+        /*var formattedStr = new FormattedString();
+        var existingStr = new Span { Text = input.Text };
+        Span xSpan = new Span { TextColor = Colors.Red, Text = "X" };
+        string currentInput = input.Text;
+
+        formattedStr.Spans.Add(existingStr);
+        formattedStr.Spans.Add(xSpan);
+
+        input.FormattedText = formattedStr;
+        input.Text = currentInput + "X";*/
+        int currentLength = input.Text.Length;
+        bool inputHasValue = currentLength > 0;
+        
+        if (inputHasValue && input.Text != "0")
+        {
+            char lastChar = input.Text[currentLength - 1];
+
+            if (lastChar == 'X' || int.TryParse(lastChar.ToString(), out _))
+            {
+                return;
+            }
+            input.Text += "X";
+        }
+        else
+        {
+            input.Text = "X";
         }
     }
 }
