@@ -8,6 +8,7 @@
           RowSpacing="1.5">
         
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*" />
             <RowDefinition Height="1.5*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -25,10 +26,25 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <Button Grid.Row="0"
+                Grid.Column="0"
+                Text="+"
+                BackgroundColor="LightGreen"
+                TextColor="Black"
+                FontSize="20"
+                HorizontalOptions="FillAndExpand">
+
+            <Button.GestureRecognizers>
+                <PointerGestureRecognizer PointerEntered="OnMouseEnter"
+                                          PointerExited="OnMouseExit"/>
+            </Button.GestureRecognizers>
+
+        </Button>
+
         <VerticalStackLayout
-                     Grid.Row="0"
+                     Grid.Row="1"
                      Grid.ColumnSpan="4"
-                     Padding="5.0">
+                     Padding="2.0">
 
             <Label Text="0"
                    x:Name="input"
@@ -46,7 +62,7 @@
 
         </VerticalStackLayout>
         
-        <Button Grid.Row="1"
+        <Button Grid.Row="2"
                 Grid.Column="0"
                 Text="Variable"
                 BackgroundColor="Orange"
@@ -62,7 +78,7 @@
         </Button>
         
         <Button Text="List"
-                Grid.Row="1"
+                Grid.Row="2"
                 Grid.Column="1"
                 FontSize="20"
                 BackgroundColor="Orange"
@@ -76,7 +92,7 @@
         </Button>
         
         <Button Text="( )"
-                Grid.Row="1"
+                Grid.Row="2"
                 Grid.Column="2"
                 FontSize="30"
                 BackgroundColor="Gray"
@@ -92,7 +108,7 @@
 
         <Button Text="^"
                 ClassId="^"
-                Grid.Row="1"
+                Grid.Row="2"
                 Grid.Column="3"
                 FontSize="15"
                 BackgroundColor="Gray"
@@ -107,7 +123,7 @@
             
         </Button>
         
-        <Grid Grid.Row="2" Grid.Column="0">
+        <Grid Grid.Row="3" Grid.Column="0">
             
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -144,7 +160,7 @@
             </Button>
         </Grid>
 
-        <Grid Grid.Row="2"
+        <Grid Grid.Row="3"
               Grid.Column="1">
 
             <Grid.RowDefinitions>
@@ -183,7 +199,7 @@
         </Grid>
 
         <Button Text="C"
-                Grid.Row="2"
+                Grid.Row="3"
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="#AB3825"
@@ -199,7 +215,7 @@
         
         <Button Text="÷"
                 ClassId="/"
-                Grid.Row="2"
+                Grid.Row="3"
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
@@ -214,7 +230,7 @@
         </Button>
 
         <Button Text="7"
-                Grid.Row="3"
+                Grid.Row="4"
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
@@ -229,7 +245,7 @@
         </Button>
 
         <Button Text="8"
-                Grid.Row="3"
+                Grid.Row="4"
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="White"
@@ -244,7 +260,7 @@
         </Button>
 
         <Button Text="9"
-                Grid.Row="3"
+                Grid.Row="4"
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="White"
@@ -260,7 +276,7 @@
 
         <Button Text="*"
                 ClassId="*"
-                Grid.Row="3"
+                Grid.Row="4"
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
@@ -275,7 +291,7 @@
         </Button>
 
         <Button Text="4"
-                Grid.Row="4"
+                Grid.Row="5"
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
@@ -290,7 +306,7 @@
         </Button>
 
         <Button Text="5"
-                Grid.Row="4"
+                Grid.Row="5"
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="White"
@@ -305,7 +321,7 @@
         </Button>
 
         <Button Text="6"
-                Grid.Row="4"
+                Grid.Row="5"
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="White"
@@ -321,7 +337,7 @@
 
         <Button Text="-"
                 ClassId="-"
-                Grid.Row="4"
+                Grid.Row="5"
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
@@ -336,7 +352,7 @@
         </Button>
 
         <Button Text="1"
-                Grid.Row="5"
+                Grid.Row="6"
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
@@ -351,7 +367,7 @@
         </Button>
 
         <Button Text="2"
-                Grid.Row="5"
+                Grid.Row="6"
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="White"
@@ -366,7 +382,7 @@
         </Button>
 
         <Button Text="3"
-                Grid.Row="5"
+                Grid.Row="6"
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="White"
@@ -382,7 +398,7 @@
 
         <Button Text="+"
                 ClassId="+"
-                Grid.Row="5"
+                Grid.Row="6"
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
@@ -397,7 +413,7 @@
         </Button>
 
         <Button Text="0"
-                Grid.Row="6"
+                Grid.Row="7"
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
@@ -413,7 +429,7 @@
 
         <Button Text="."
                 ClassId="."
-                Grid.Row="6"
+                Grid.Row="7"
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="Gray"
@@ -428,7 +444,7 @@
         </Button>
 
         <Button Text="←"
-                Grid.Row="6"
+                Grid.Row="7"
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="Gray"
@@ -443,7 +459,7 @@
         </Button>
 
         <Button Text="↷"
-                Grid.Row="6"
+                Grid.Row="7"
                 Grid.Column="3"
                 FontSize="40"
                 BackgroundColor="Gray"
