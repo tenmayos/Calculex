@@ -5,15 +5,19 @@ namespace Calculex.Views;
 public partial class MainPage : ContentPage
 {
     private MathProcessor Mp;
+    private int indexOfX;
     private bool OperatorPressed;
     private bool IsBetweenParentheses;
+    private bool IsCompletingEq;
     public MainPage()
 	{
 		InitializeComponent();
 
+        indexOfX = -1;
         Mp = new MathProcessor();
         OperatorPressed = false;
         IsBetweenParentheses = false;
+        IsCompletingEq = false;
     }
 
     #region Behavior Events
@@ -74,6 +78,7 @@ public partial class MainPage : ContentPage
     {
         input.Text = "0";
         rslt.Text = "0";
+        indexOfX = -1;
         OperatorPressed = false;
         IsBetweenParentheses = false;
     }
@@ -150,16 +155,6 @@ public partial class MainPage : ContentPage
 
     private void OnVariableButtonClicked(object sender, EventArgs e)
     {
-        /*var formattedStr = new FormattedString();
-        var existingStr = new Span { Text = input.Text };
-        Span xSpan = new Span { TextColor = Colors.Red, Text = "X" };
-        string currentInput = input.Text;
-
-        formattedStr.Spans.Add(existingStr);
-        formattedStr.Spans.Add(xSpan);
-
-        input.FormattedText = formattedStr;
-        input.Text = currentInput + "X";*/
         int currentLength = input.Text.Length;
         bool inputHasValue = currentLength > 0;
         
@@ -177,6 +172,35 @@ public partial class MainPage : ContentPage
         {
             input.Text = "X";
         }
+    }
+
+    private void OnAddEquationClicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void OnNextVariableClicked(object sender, EventArgs e)
+    {
+        if (input.Text == "" || input.Text == null || !input.Text.Contains('X'))
+            return;
+
+        IsCompletingEq = true;
+        indexOfX = input.Text.IndexOf("X") + 1;
+
+        string firstPart = input.Text.Substring(0, input.Text.Length - indexOfX);
+        string lastPart = input.Text.Substring(indexOfX, input.Text.Length - indexOfX);
+
+        var formattedStr = new FormattedString();
+
+        Span firstHalf = new Span{ Text = firstPart };
+        Span highlight = new Span { Text = "X", BackgroundColor = Colors.Orange };
+        Span lastHalf = new Span { Text = lastPart };
+
+        formattedStr.Spans.Add(firstHalf);
+        formattedStr.Spans.Add(highlight);
+        formattedStr.Spans.Add(lastHalf);
+
+        input.FormattedText = formattedStr;
     }
 }
 
