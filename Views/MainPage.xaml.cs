@@ -45,6 +45,21 @@ public partial class MainPage : ContentPage
         var btn = (sender as Button);
 
         string digit = btn.Text;
+        if (IsCompletingEq)
+        {
+            Span targetSpan = input.FormattedText.Spans[indexOfX];
+
+            if (targetSpan.Text == "X")
+            {
+                targetSpan.Text = digit;
+            }
+            else
+            {
+                targetSpan.Text += digit;
+            }
+            rslt.Text = Mp.Compute(formattedString.ToString()).ToString();
+            return;
+        }
 
         if (inputHasValue && input.FormattedText.Spans.First().Text != "0")
         {
@@ -63,6 +78,8 @@ public partial class MainPage : ContentPage
     private void OnOperatorButtonClicked(object sender, EventArgs e)
     {
         // Checks if the last character is an operator or not.
+        if (IsCompletingEq) return;
+
         var lastSpanText = input.FormattedText.Spans[input.FormattedText.Spans.Count - 1].Text;
         char lastChar = char.Parse(lastSpanText);
 
@@ -79,6 +96,7 @@ public partial class MainPage : ContentPage
         indexOfX = -1;
         OperatorPressed = false;
         IsBetweenParentheses = false;
+        IsCompletingEq = false;
 
         ResetSpanColors();
         formattedString = new();
@@ -185,6 +203,7 @@ public partial class MainPage : ContentPage
         }
 
         if (canContinue == false) return;
+        if (IsCompletingEq) ResetSpanColors();
 
         IsCompletingEq = true;
         
@@ -193,6 +212,7 @@ public partial class MainPage : ContentPage
             if (formattedString.Spans[i].Text == "X")
             {
                 formattedString.Spans[i].BackgroundColor = Colors.Orange;
+                formattedString.Spans[i].TextColor = Colors.Black;
                 indexOfX = i;
                 input.FormattedText = formattedString;
                 break;

@@ -199,7 +199,7 @@
             </Button>
         </Grid>
 
-        <Button Text="C"
+        <Button Text="CE"
                 Grid.Row="3"
                 Grid.Column="2"
                 FontSize="36"
@@ -444,11 +444,11 @@
             
         </Button>
 
-        <Button Text="←"
+        <Button Text="C"
                 Grid.Row="7"
                 Grid.Column="2"
                 FontSize="36"
-                BackgroundColor="Gray"
+                BackgroundColor="#AB3825"
                 TextColor="Black"
                 Clicked="OnDeleteButtonClicked">
             
