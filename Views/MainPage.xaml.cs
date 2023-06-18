@@ -5,6 +5,7 @@ namespace Calculex.Views;
 public partial class MainPage : ContentPage
 {
     private MathProcessor Mp;
+    private static FormattedString formattedString;
     private int indexOfX;
     private bool OperatorPressed;
     private bool IsBetweenParentheses;
@@ -15,6 +16,9 @@ public partial class MainPage : ContentPage
 
         indexOfX = -1;
         Mp = new MathProcessor();
+        formattedString = new FormattedString();
+        formattedString.Spans.Add(new Span { Text = "0" });
+        input.FormattedText = formattedString;
         OperatorPressed = false;
         IsBetweenParentheses = false;
         IsCompletingEq = false;
@@ -34,78 +38,77 @@ public partial class MainPage : ContentPage
 
     private void OnNumberButtonClicked(object sender, EventArgs e)
     {
-        bool inputHasValue = input.Text.Length > 0;
-        char lastCharacter = input.Text[input.Text.Length - 1];
+        bool inputHasValue = input.FormattedText.Spans.Count > 0;
+        var lastSpan = input.FormattedText.Spans[input.FormattedText.Spans.Count - 1];
+        var lastCharacter = lastSpan.Text[lastSpan.Text.Length - 1];
+
         var btn = (sender as Button);
-        
-        if (inputHasValue && input.Text != "0")
+
+        string digit = btn.Text;
+
+        if (inputHasValue && input.FormattedText.Spans.First().Text != "0")
         {
             if (lastCharacter == 'X') return;
 
-            input.Text += btn.Text;
+            WriteDigit(digit);
         }
         else
         {
-            input.Text = btn.Text;
-        }
-        
-        if (IsBetweenParentheses)
-        {
-            return;
+            WriteDigit(digit, true);
         }
 
-        if (!OperatorPressed)
-        {
-            rslt.Text = input.Text;
-            return;
-        }
-
-        rslt.Text = Mp.Compute(input.Text).ToString();
+        OperatorPressed = false;
+        rslt.Text = Mp.Compute(formattedString.ToString()).ToString();
     }
     private void OnOperatorButtonClicked(object sender, EventArgs e)
     {
         // Checks if the last character is an operator or not.
+        var lastSpanText = input.FormattedText.Spans[input.FormattedText.Spans.Count - 1].Text;
+        char lastChar = char.Parse(lastSpanText);
 
-        char lastCharacter = input.Text[input.Text.Length - 1];
-        if (!Mp.IsMathOperator(lastCharacter) && lastCharacter != '(')
+        if (!OperatorPressed && lastChar != '(')
         {
             string op = (sender as Button).ClassId;
             OperatorPressed = true;
-            input.Text += op;
+            WriteDigit(op);
         }
     }
     private void OnResetClicked(object sender, EventArgs e)
     {
-        input.Text = "0";
         rslt.Text = "0";
         indexOfX = -1;
         OperatorPressed = false;
         IsBetweenParentheses = false;
+
+        ResetSpanColors();
+        formattedString = new();
+        formattedString.Spans.Add(new Span { Text = "0" });
+        input.FormattedText = formattedString;
     }
 
     private void OnParenthesisButtonClicked(object sender, EventArgs e)
     {
-        if (!IsBetweenParentheses && input.Text == "0")
+        char lastChar = char.Parse(input.FormattedText.Spans[input.FormattedText.Spans.Count - 1].Text);
+
+        if (!IsBetweenParentheses && input.FormattedText.Spans[0].Text == "0")
         {
             IsBetweenParentheses = true;
-            input.Text = "(";
+            WriteDigit("(", true);
             return;
         }
-
-        char lastChar = input.Text[input.Text.Length - 1];
 
         if (!IsBetweenParentheses && Mp.IsMathOperator(lastChar))
         {
             IsBetweenParentheses = true;
-            input.Text += "(";
+            WriteDigit("(");
             return;
         }
 
         if (IsBetweenParentheses && lastChar != '(')
         {
             IsBetweenParentheses = false;
-            input.Text += ")";
-            rslt.Text = Mp.Compute(input.Text).ToString();
+            WriteDigit(")");
+            rslt.Text = Mp.Compute(formattedString.ToString()).ToString();
             return;
         }
     }
@@ -139,29 +142,28 @@ public partial class MainPage : ContentPage
 
         if (!IsBetweenParentheses)
         {
-            rslt.Text = Mp.Compute(input.Text).ToString();
+            rslt.Text = Mp.Compute(formattedString.ToString()).ToString();
         }
     }
 
     private void OnVariableButtonClicked(object sender, EventArgs e)
     {
-        int currentLength = input.Text.Length;
-        bool inputHasValue = currentLength > 0;
+        int currentLength = input.FormattedText.Spans.Count;
+        char lastChar = char.Parse(input.FormattedText.Spans[currentLength - 1].Text);
         
-        if (inputHasValue && input.Text != "0")
+        if (currentLength > 1)
         {
-            char lastChar = input.Text[currentLength - 1];
-
-            if (lastChar == 'X' || int.TryParse(lastChar.ToString(), out _))
+            if (int.TryParse(lastChar.ToString(), out _))
             {
                 return;
             }
-            input.Text += "X";
+            WriteDigit("X");
         }
         else
         {
-            input.Text = "X";
+            WriteDigit("X", true);
         }
+        OperatorPressed = false;
     }
 
     private void OnAddEquationClicked(object sender, EventArgs e)
@@ -171,26 +173,50 @@ public partial class MainPage : ContentPage
 
     private void OnNextVariableClicked(object sender, EventArgs e)
     {
-        if (input.Text == "" || input.Text == null || !input.Text.Contains('X'))
-            return;
+        bool canContinue = false;
+
+        for (int i = 0; i < formattedString.Spans.Count; i++)
+        {
+            if (formattedString.Spans[i].Text == "X")
+            {
+                canContinue = true;
+                break;
+            }
+        }
+
+        if (canContinue == false) return;
 
         IsCompletingEq = true;
-        indexOfX = input.Text.IndexOf("X") + 1;
+        
+        for (int i = 0; i < formattedString.Spans.Count; i++)
+        {
+            if (formattedString.Spans[i].Text == "X")
+            {
+                formattedString.Spans[i].BackgroundColor = Colors.Orange;
+                indexOfX = i;
+                input.FormattedText = formattedString;
+                break;
+            }
+        }
+    }
 
-        string firstPart = input.Text.Substring(0, input.Text.Length - indexOfX);
-        string lastPart = input.Text.Substring(indexOfX, input.Text.Length - indexOfX);
+    private void WriteDigit(string digit, bool isFirstTime = false)
+    {
+        if (isFirstTime)
+        {
+            formattedString.Spans.RemoveAt(0);
+        }
+        formattedString.Spans.Add(new Span { Text = digit });
+        input.FormattedText = formattedString;
+    }
 
-        var formattedStr = new FormattedString();
-
-        Span firstHalf = new Span{ Text = firstPart };
-        Span highlight = new Span { Text = "X", BackgroundColor = Colors.Orange };
-        Span lastHalf = new Span { Text = lastPart };
-
-        formattedStr.Spans.Add(firstHalf);
-        formattedStr.Spans.Add(highlight);
-        formattedStr.Spans.Add(lastHalf);
-
-        input.FormattedText = formattedStr;
+    private void ResetSpanColors()
+    {
+        foreach (var span in input.FormattedText.Spans)
+        {
+            span.BackgroundColor = null;
+            span.TextColor = Colors.White;
+        }
     }
 }
 
