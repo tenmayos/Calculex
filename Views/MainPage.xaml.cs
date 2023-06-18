@@ -110,16 +110,6 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private void OnHistory1Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void OnHistory2Clicked(object sender, EventArgs e)
-    {
-
-    }
-
     private void OnDeleteButtonClicked(object sender, EventArgs e)
     {
         int currentLength = input.Text.Length;
