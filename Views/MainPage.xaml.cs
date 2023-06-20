@@ -133,7 +133,7 @@ public partial class MainPage : ContentPage
 
     private void OnDeleteButtonClicked(object sender, EventArgs e)
     {
-        int currentLength = input.Text.Length;
+        int currentLength = formattedString.Spans.Count;
 
         if (currentLength <= 1)
         {
@@ -141,11 +141,34 @@ public partial class MainPage : ContentPage
             return;
         }
 
+        
+
+        
+        if (IsCompletingEq)
+        {
+            Span xSpan = formattedString.Spans[indexOfX];
+
+            if (xSpan.Text.Length <= 1)
+            {
+                xSpan.Text = "X";
+            }
+            else
+            {
+                xSpan.Text = xSpan.Text.Remove(xSpan.Text.Length - 1);
+                ResetSpanColors();
+                xSpan.BackgroundColor = Colors.Orange;
+                xSpan.TextColor = Colors.Black;
+            }
+
+            input.FormattedText = formattedString;
+            return;
+        }
+
         int index = currentLength - 1;
 
-        char lastCharacter = input.Text[index];
+        formattedString.Spans.RemoveAt(index);
 
-        input.Text = input.Text.Remove(index);
+        char lastCharacter = char.Parse(formattedString.Spans[index].Text);
 
         if (lastCharacter == ')')
         {
@@ -162,6 +185,7 @@ public partial class MainPage : ContentPage
         {
             rslt.Text = Mp.Compute(formattedString.ToString()).ToString();
         }
+        input.FormattedText = formattedString;
     }
 
     private void OnVariableButtonClicked(object sender, EventArgs e)
@@ -184,9 +208,19 @@ public partial class MainPage : ContentPage
         OperatorPressed = false;
     }
 
-    private void OnAddEquationClicked(object sender, EventArgs e)
+    private async void OnAddEquationClicked(object sender, EventArgs e)
     {
+        string result = await DisplayPromptAsync(title: "Save Equation?", message: "Equation Name", placeholder: "Name", keyboard: Keyboard.Default);
 
+        if (result == null) return;
+
+        if (result == "")
+        {
+            await DisplayAlert("Failed", "Your Equation name needs to have atleast 1 character", "Ok!");
+            return;
+        }
+        // Do saving logic here.
+        await DisplayAlert("Success", $"Your Equation {result} was saved successfully", "Hurray!");
     }
 
     private void OnNextVariableClicked(object sender, EventArgs e)
@@ -202,7 +236,11 @@ public partial class MainPage : ContentPage
             }
         }
 
-        if (canContinue == false) return;
+        if (canContinue == false)
+        {
+            IsCompletingEq = false;
+            return;
+        }
         if (IsCompletingEq) ResetSpanColors();
 
         IsCompletingEq = true;
@@ -230,12 +268,20 @@ public partial class MainPage : ContentPage
         input.FormattedText = formattedString;
     }
 
-    private void ResetSpanColors()
+    private void ResetSpanColors(bool synchronize = false)
     {
         foreach (var span in input.FormattedText.Spans)
         {
             span.BackgroundColor = null;
             span.TextColor = Colors.White;
+        }
+        if (synchronize)
+        {
+            foreach (var span in formattedString.Spans)
+            {
+                span.BackgroundColor = null;
+                span.TextColor = Colors.White;
+            }
         }
     }
 }
