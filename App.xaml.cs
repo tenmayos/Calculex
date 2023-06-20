@@ -1,5 +1,4 @@
 ﻿using Calculex.Core;
-using System.Reflection;
 
 namespace Calculex;
 
@@ -16,19 +15,14 @@ public partial class App : Application
 #if ANDROID
 	protected override void OnStart()
     {
-		string fileName = "/equations.json";
-
-		bool equationsFileExists = File.Exists(fileName);
-
-		if (equationsFileExists) return;
+		if (File.Exists(ConfigHolder.path)) return;
 
         var readStatus = Permissions.RequestAsync<Permissions.StorageRead>();
         var writeStatus = Permissions.RequestAsync<Permissions.StorageWrite>();
-		var granted = PermissionStatus.Granted;
 
-		if (readStatus.Result == granted && writeStatus.Result == granted)
+		if (readStatus.Result == PermissionStatus.Granted && writeStatus.Result == PermissionStatus.Granted)
 		{
-            File.Create(fileName);
+            File.Create(ConfigHolder.path);
         }
 		else
 		{
