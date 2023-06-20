@@ -81,6 +81,7 @@ public partial class MainPage : ContentPage
         if (IsCompletingEq) return;
 
         var lastSpanText = input.FormattedText.Spans[input.FormattedText.Spans.Count - 1].Text;
+        // bugs out when just coming out of IsCompletingEq
         char lastChar = char.Parse(lastSpanText);
 
         if (!OperatorPressed && lastChar != '(')
@@ -140,9 +141,6 @@ public partial class MainPage : ContentPage
             OnResetClicked(sender, e);
             return;
         }
-
-        
-
         
         if (IsCompletingEq)
         {
@@ -168,7 +166,8 @@ public partial class MainPage : ContentPage
 
         formattedString.Spans.RemoveAt(index);
 
-        char lastCharacter = char.Parse(formattedString.Spans[index].Text);
+        string currentString = formattedString.Spans[index - 1].Text;
+        char lastCharacter = currentString[currentString.Length - 1];
 
         if (lastCharacter == ')')
         {
@@ -284,6 +283,16 @@ public partial class MainPage : ContentPage
                 span.TextColor = Colors.White;
             }
         }
+    }
+
+    private void OnPastEqClicked(object sender, EventArgs e)
+    {
+        // To be implemented after file saving is complete.
+    }
+
+    private void OnListClicked(object sender, EventArgs e)
+    {
+        // To be implemented last.
     }
 }
 
