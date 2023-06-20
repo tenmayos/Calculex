@@ -216,11 +216,12 @@ public partial class MainPage : ContentPage
 
         if (result == "")
         {
-            await DisplayAlert("Failed", "Your Equation name needs to have atleast 1 character", "Ok!");
+            await DisplayAlert("Failed", "Your Equation name needs to have atleast 1 character or is not in a valid format", "Ok!");
             return;
         }
         // Do saving logic here.
         await DisplayAlert("Success", $"Your Equation {result} was saved successfully", "Hurray!");
+        OnResetClicked(sender, e);
     }
 
     private void OnNextVariableClicked(object sender, EventArgs e)
