@@ -38,6 +38,7 @@
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnAddEquationClicked" />
             </Button.GestureRecognizers>
 
         </Button>
@@ -68,12 +69,12 @@
                 Text="Variable"
                 BackgroundColor="Orange"
                 TextColor="Black"
-                FontSize="15"
-                Clicked="OnVariableButtonClicked">
+                FontSize="15">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnVariableButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -88,6 +89,7 @@
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnListClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -97,12 +99,12 @@
                 Grid.Column="2"
                 FontSize="30"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                Clicked="OnParenthesisButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnParenthesisButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -113,13 +115,12 @@
                 Grid.Column="3"
                 FontSize="15"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                Clicked="OnOperatorButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
-                                          PointerExited="OnMouseExit"
-                                          />
+                                          PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnOperatorButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -143,6 +144,7 @@
                 <Button.GestureRecognizers>
                     <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                    <TapGestureRecognizer Tapped="OnPastEqClicked" />
                 </Button.GestureRecognizers>
                 
             </Button>
@@ -156,6 +158,7 @@
                 <Button.GestureRecognizers>
                     <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                               PointerExited="OnMouseExit"/>
+                    <TapGestureRecognizer Tapped="OnPastEqClicked" />
                 </Button.GestureRecognizers>
                 
             </Button>
@@ -181,6 +184,7 @@
                 <Button.GestureRecognizers>
                     <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                    <TapGestureRecognizer Tapped="OnPastEqClicked" />
                 </Button.GestureRecognizers>
                 
             </Button>
@@ -194,6 +198,7 @@
                 <Button.GestureRecognizers>
                     <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                    <TapGestureRecognizer Tapped="OnPastEqClicked" />
                 </Button.GestureRecognizers>
                 
             </Button>
@@ -204,12 +209,12 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="#AB3825"
-                TextColor="Black"
-                Clicked="OnResetClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnResetClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -220,12 +225,12 @@
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                Clicked="OnOperatorButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnOperatorButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -235,12 +240,12 @@
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                Clicked="OnNumberButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnNumberButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -250,12 +255,12 @@
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                Clicked="OnNumberButtonClicked">
+                TextColor="Black">
 
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnNumberButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -265,12 +270,12 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                Clicked="OnNumberButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnNumberButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -281,12 +286,12 @@
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                Clicked="OnOperatorButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnOperatorButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -296,12 +301,12 @@
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                Clicked="OnNumberButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnNumberButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -311,12 +316,12 @@
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                Clicked="OnNumberButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnNumberButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -326,12 +331,12 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                Clicked="OnNumberButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnNumberButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -342,12 +347,12 @@
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                Clicked="OnOperatorButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnOperatorButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -357,12 +362,12 @@
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                Clicked="OnNumberButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnNumberButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -372,12 +377,12 @@
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                Clicked="OnNumberButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnNumberButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -387,12 +392,12 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                Clicked="OnNumberButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnNumberButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -403,12 +408,12 @@
                 Grid.Column="3"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                Clicked="OnOperatorButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnOperatorButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -418,12 +423,12 @@
                 Grid.Column="0"
                 FontSize="36"
                 BackgroundColor="White"
-                TextColor="Black"
-                Clicked="OnNumberButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnNumberButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -434,12 +439,12 @@
                 Grid.Column="1"
                 FontSize="36"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                Clicked="OnOperatorButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnOperatorButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -449,12 +454,12 @@
                 Grid.Column="2"
                 FontSize="36"
                 BackgroundColor="#AB3825"
-                TextColor="Black"
-                Clicked="OnDeleteButtonClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnDeleteButtonClicked" />
             </Button.GestureRecognizers>
             
         </Button>
@@ -464,12 +469,12 @@
                 Grid.Column="3"
                 FontSize="40"
                 BackgroundColor="Gray"
-                TextColor="Black"
-                Clicked="OnNextVariableClicked">
+                TextColor="Black">
             
             <Button.GestureRecognizers>
                 <PointerGestureRecognizer PointerEntered="OnMouseEnter"
                                           PointerExited="OnMouseExit"/>
+                <TapGestureRecognizer Tapped="OnNextVariableClicked" />
             </Button.GestureRecognizers>
             
         </Button>
