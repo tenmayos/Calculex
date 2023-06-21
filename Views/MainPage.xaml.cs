@@ -138,6 +138,7 @@ public partial class MainPage : ContentPage
 
         if (currentLength <= 1)
         {
+            ResetSpanColors();
             OnResetClicked(sender, e);
             return;
         }
