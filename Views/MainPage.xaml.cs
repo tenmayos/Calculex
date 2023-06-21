@@ -13,7 +13,7 @@ public partial class MainPage : ContentPage
     public MainPage()
 	{
 		InitializeComponent();
-        indexOfX = -1;
+        indexOfX = 0;
         Mp = new MathProcessor();
         formattedString = new FormattedString();
         //input.SetBinding(Label.FormattedTextProperty, "formattedString");
@@ -209,20 +209,24 @@ public partial class MainPage : ContentPage
         }
         else
         {
-            WriteDigit("X", true);
+            WriteDigit("X");
         }
         OperatorPressed = false;
     }
 
     private async void OnAddEquationClicked(object sender, EventArgs e)
     {
-        string result = await DisplayPromptAsync(title: "Save Equation?", message: "Equation Name", placeholder: "Name", keyboard: Keyboard.Default);
+        string result = await DisplayPromptAsync(
+            title: "Save Equation?",
+            message: "Equation Name",
+            placeholder: "Name",
+            keyboard: Keyboard.Default);
 
         if (result == null) return;
 
         if (result == "")
         {
-            await DisplayAlert("Failed", "Your Equation name needs to have atleast 1 character or is not in a valid format", "Ok!");
+            await DisplayAlert("Failed", "Your Equation name needs to have atleast 1 character", "Ok!");
             return;
         }
         // Do saving logic here.
