@@ -13,15 +13,18 @@ public partial class MainPage : ContentPage
     public MainPage()
 	{
 		InitializeComponent();
-
         indexOfX = -1;
         Mp = new MathProcessor();
         formattedString = new FormattedString();
+        //input.SetBinding(Label.FormattedTextProperty, "formattedString");
+        
+        formattedString.SetBinding(Label.FormattedTextProperty, "input");
+        input.BindingContext = formattedString;
         formattedString.Spans.Add(new Span { Text = "0" });
-        input.FormattedText = formattedString;
         OperatorPressed = false;
         IsBetweenParentheses = false;
         IsCompletingEq = false;
+        
     }
 
     #region Behavior Events
@@ -38,16 +41,17 @@ public partial class MainPage : ContentPage
 
     private void OnNumberButtonClicked(object sender, EventArgs e)
     {
-        bool inputHasValue = input.FormattedText.Spans.Count > 0;
-        var lastSpan = input.FormattedText.Spans[input.FormattedText.Spans.Count - 1];
+        bool inputHasValue = formattedString.Spans.Count > 0;
+        var lastSpan = formattedString.Spans[formattedString.Spans.Count - 1];
         var lastCharacter = lastSpan.Text[lastSpan.Text.Length - 1];
 
         var btn = (sender as Button);
 
         string digit = btn.Text;
+
         if (IsCompletingEq)
         {
-            Span targetSpan = input.FormattedText.Spans[indexOfX];
+            Span targetSpan = formattedString.Spans[indexOfX];
 
             if (targetSpan.Text == "X")
             {
@@ -57,11 +61,12 @@ public partial class MainPage : ContentPage
             {
                 targetSpan.Text += digit;
             }
+
             rslt.Text = Mp.Compute(formattedString.ToString()).ToString();
             return;
         }
 
-        if (inputHasValue && input.FormattedText.Spans.First().Text != "0")
+        if (inputHasValue && formattedString.Spans.First().Text != "0")
         {
             if (lastCharacter == 'X') return;
 
@@ -80,7 +85,7 @@ public partial class MainPage : ContentPage
         // Checks if the last character is an operator or not.
         if (IsCompletingEq) return;
 
-        var lastSpanText = input.FormattedText.Spans[input.FormattedText.Spans.Count - 1].Text;
+        var lastSpanText = formattedString.Spans[formattedString.Spans.Count - 1].Text;
         // bugs out when just coming out of IsCompletingEq
         char lastChar = char.Parse(lastSpanText);
 
@@ -100,16 +105,20 @@ public partial class MainPage : ContentPage
         IsCompletingEq = false;
 
         ResetSpanColors();
-        formattedString = new();
+        formattedString.RemoveBinding(Label.FormattedTextProperty);
+
+        formattedString = new FormattedString();
         formattedString.Spans.Add(new Span { Text = "0" });
-        input.FormattedText = formattedString;
+
+        formattedString.SetBinding(Label.FormattedTextProperty, "input");
+        input.BindingContext = formattedString;
     }
 
     private void OnParenthesisButtonClicked(object sender, EventArgs e)
     {
-        char lastChar = char.Parse(input.FormattedText.Spans[input.FormattedText.Spans.Count - 1].Text);
+        char lastChar = char.Parse(formattedString.Spans[formattedString.Spans.Count - 1].Text);
 
-        if (!IsBetweenParentheses && input.FormattedText.Spans[0].Text == "0")
+        if (!IsBetweenParentheses && formattedString.Spans[0].Text == "0")
         {
             IsBetweenParentheses = true;
             WriteDigit("(", true);
@@ -138,7 +147,6 @@ public partial class MainPage : ContentPage
 
         if (currentLength <= 1)
         {
-            ResetSpanColors();
             OnResetClicked(sender, e);
             return;
         }
@@ -159,7 +167,6 @@ public partial class MainPage : ContentPage
                 xSpan.TextColor = Colors.Black;
             }
 
-            input.FormattedText = formattedString;
             return;
         }
 
@@ -185,13 +192,12 @@ public partial class MainPage : ContentPage
         {
             rslt.Text = Mp.Compute(formattedString.ToString()).ToString();
         }
-        input.FormattedText = formattedString;
     }
 
     private void OnVariableButtonClicked(object sender, EventArgs e)
     {
-        int currentLength = input.FormattedText.Spans.Count;
-        char lastChar = char.Parse(input.FormattedText.Spans[currentLength - 1].Text);
+        int currentLength = formattedString.Spans.Count;
+        char lastChar = char.Parse(formattedString.Spans[currentLength - 1].Text);
         
         if (currentLength > 1)
         {
@@ -253,7 +259,6 @@ public partial class MainPage : ContentPage
                 formattedString.Spans[i].BackgroundColor = Colors.Orange;
                 formattedString.Spans[i].TextColor = Colors.Black;
                 indexOfX = i;
-                input.FormattedText = formattedString;
                 break;
             }
         }
@@ -265,24 +270,16 @@ public partial class MainPage : ContentPage
         {
             formattedString.Spans.RemoveAt(0);
         }
+
         formattedString.Spans.Add(new Span { Text = digit });
-        input.FormattedText = formattedString;
     }
 
     private void ResetSpanColors(bool synchronize = false)
     {
-        foreach (var span in input.FormattedText.Spans)
+        foreach (var span in formattedString.Spans)
         {
             span.BackgroundColor = null;
             span.TextColor = Colors.White;
-        }
-        if (synchronize)
-        {
-            foreach (var span in formattedString.Spans)
-            {
-                span.BackgroundColor = null;
-                span.TextColor = Colors.White;
-            }
         }
     }
 

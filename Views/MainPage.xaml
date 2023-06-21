@@ -48,7 +48,8 @@
                      Grid.ColumnSpan="4"
                      Padding="2.0">
 
-            <Label Text="0"
+            <Label
+                   FormattedText="{x:Binding}"
                    x:Name="input"
                    FontSize="45"
                    HorizontalTextAlignment="End"
